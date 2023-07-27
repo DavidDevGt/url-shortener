@@ -1,26 +1,55 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="url-shortener">
+    <h1>URL Acortador</h1>
+
+    <form @submit.prevent="shortenUrl">
+      <input type="url" v-model="longUrl" placeholder="Pega la URL que quieres acortar" required />
+      <button type="submit">Acortar</button>
+    </form>
+
+    <p v-if="shortUrl">URL acortada: {{ shortUrl }}</p>
+  </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  <script>
+    import axios from 'axios';
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+    export default {
+      data() {
+        return {
+          longUrl: '',
+          shortUrl: ''
+        };
+      },
+      methods: {
+        async shortenUrl() {
+          const response = await axios.post('http://localhost:3000/shorten', { url: this.longUrl });
+          this.shortUrl = response.data.shortUrl;
+        }
+      }
+    };
+  </script>
+
+  <style scoped>
+    .url-shortener {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    form {
+      display: flex;
+      gap: 10px;
+    }
+
+    input, button {
+      padding: 10px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+  </style>
