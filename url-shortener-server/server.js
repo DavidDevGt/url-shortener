@@ -8,25 +8,35 @@ app.use(cors());
 
 app.use(express.json());
 
-// Database para acortar links
-let db = [];
+class Database {
+    constructor() {
+        this.entries = new Map();
+    }
+
+    add(id, url) {
+        this.entries.set(id, { id, url });
+    }
+
+    find(id) {
+        return this.entries.get(id);
+    }
+}
+
+let db = new Database();
+
 app.post('/shorten', (req, res) => {
-  // Generate a short URL ID
+  // Genera un ID para la URL
   const id = shortid.generate();
 
-  // Save the short URL in our "database"
-  db.push({
-    id: id,
-    url: req.body.url
-  });
+  // Guarda la URL acortada
+  db.add(id, req.body.url);
 
-  // Respond with the short URL
+  // Imprime la URL acortada
   res.json({ shortUrl: 'http://localhost:3000/' + id });
 });
 
-
 app.get('/:id', (req, res) => {
-    const entry = db.find(entry => entry.id === req.params.id);
+    const entry = db.find(req.params.id);
 
     if (entry) {
         res.redirect(entry.url);
@@ -36,9 +46,8 @@ app.get('/:id', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.send('Servidor de acortamiento de URL en funcionamiento');
+    res.send('Servidor en funcionamiento');
 });
-
 
 app.listen(3000, () => {
     console.log('Servidor iniciado en http://localhost:3000');
