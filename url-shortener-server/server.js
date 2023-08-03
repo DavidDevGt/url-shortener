@@ -25,14 +25,11 @@ class Database {
 let db = new Database();
 
 app.post('/shorten', (req, res) => {
-  // Genera un ID para la URL
   const id = shortid.generate();
 
-  // Guarda la URL acortada
   db.add(id, req.body.url);
 
-  // Imprime la URL acortada
-  res.json({ shortUrl: `${process.env.BASE_URL}/${id}` });
+  res.json({ shortUrl: `http://localhost:3000/${id}` });
 });
 
 app.get('/:id', (req, res) => {
@@ -49,8 +46,8 @@ app.get('/', (req, res) => {
     res.send('Servidor en funcionamiento');
 });
 
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 app.listen(port, () => {
-    console.log(`Servidor iniciado en ${process.env.BASE_URL}`);
+    console.log(`Servidor iniciado en http://localhost:${port}`);
 });

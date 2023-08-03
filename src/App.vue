@@ -12,14 +12,13 @@
   </div>
 </template>
 
-
 <script>
 import axios from 'axios';
 
 class UrlShortenerService {
     constructor(httpClient = axios) {
         this.httpClient = httpClient;
-        this.apiUrl = process.env.VUE_APP_API_URL;
+        this.apiUrl = 'http://localhost:3000';
     }
 
     async shorten(url) {
@@ -50,12 +49,12 @@ export default {
             }
         },
         isValidUrl(url) {
-            var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-                '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-                '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-                '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-                '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-                '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+            var pattern = new RegExp('^(https?:\\/\\/)?'+ 
+                '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ 
+                '((\\d{1,3}\\.){3}\\d{1,3}))'+ 
+                '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ 
+                '(\\?[;&a-z\\d%_.~+=-]*)?'+ 
+                '(\\#[-a-z\\d_]*)?$','i'); 
             return !!pattern.test(url);
         },
         handleError(error) {
@@ -64,8 +63,8 @@ export default {
         }
     }
 };
-
 </script>
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
