@@ -5,7 +5,10 @@
       <input v-model="longUrl" type="text" placeholder="Ingresa tu URL aquí..." />
       <button type="submit">Acortar URL</button>
     </form>
-    <p v-if="shortUrl">Enlace acortado: <a :href="shortUrl" target="_blank">{{ shortUrl }}</a></p>
+    <div v-if="shortUrl" class="short-url-container">
+      <p>Enlace acortado:</p>
+      <a :href="shortUrl" target="_blank" class="short-url">{{ shortUrl }}</a>
+    </div>
   </div>
 </template>
 
@@ -67,8 +70,10 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-
 /* Declarar fuente y reiniciar estilos */
+* {
+    font-family: 'Courier Prime', monospace;
+}
 body {
   margin: 0;
   padding: 0;
@@ -80,17 +85,18 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 480px;
+  height: 26rem;
   text-align: center;
+  margin: 4rem;
   padding: 20px;
   background: linear-gradient(to bottom right, #004c9c, #1572d6);
-  color: white;
+  color: rgb(0, 0, 0);
+  border-radius: 50px;
   box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
 }
 
 /* título */
 .url-shortener h1 {
-  font-family: 'Courier Prime', monospace;
   color: #fff;
   font-size: 2.5em;
   margin-bottom: 20px;
@@ -114,7 +120,6 @@ input, button {
   border: none;
   border-radius: 5px;
   font-size: 1em;
-  font-family: 'Courier Prime', monospace;
 }
 
 /* inputs */
@@ -135,5 +140,23 @@ button:hover {
   background-color: #ddd;
 }
 
+/* contenedor del enlace acortado */
+.short-url-container {
+  margin-top: 1.5rem;
+  background: white;
+  padding: 5px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
 
+/* enlace acortado */
+.short-url {
+  color: #007BFF;
+  text-decoration: none;
+  display: inline-block;
+  word-break: break-all;
+  padding-bottom: 20px;
+}
 </style>
