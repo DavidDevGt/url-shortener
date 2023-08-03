@@ -1,11 +1,11 @@
 <template>
   <div class="url-shortener">
-    <h1>Acortador de URL</h1>
+    <h1>Min.URL</h1>
     <form @submit.prevent="shortenUrl">
       <input v-model="longUrl" type="text" placeholder="Ingresa tu URL aquí..." />
       <button type="submit">Acortar URL</button>
     </form>
-    <p v-if="shortUrl">Tu URL acortada: <a :href="shortUrl" target="_blank">{{ shortUrl }}</a></p>
+    <p v-if="shortUrl">Enlace acortado: <a :href="shortUrl" target="_blank">{{ shortUrl }}</a></p>
   </div>
 </template>
 
@@ -15,10 +15,11 @@ import axios from 'axios';
 class UrlShortenerService {
     constructor(httpClient = axios) {
         this.httpClient = httpClient;
+        this.apiUrl = process.env.VUE_APP_API_URL;
     }
 
     async shorten(url) {
-        const response = await this.httpClient.post('http://localhost:3000/shorten', { url });
+        const response = await this.httpClient.post(`${this.apiUrl}/shorten`, { url });
         return response.data.shortUrl;
     }
 }
@@ -34,7 +35,7 @@ export default {
     methods: {
         async shortenUrl() {
             if (!this.isValidUrl(this.longUrl)) {
-                alert("Por favor, ingresa una URL válida para acortar");
+                alert("Ingresa una URL válida para acortar");
                 return;
             }
 

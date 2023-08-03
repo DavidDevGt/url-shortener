@@ -32,7 +32,7 @@ app.post('/shorten', (req, res) => {
   db.add(id, req.body.url);
 
   // Imprime la URL acortada
-  res.json({ shortUrl: 'http://localhost:3000/' + id });
+  res.json({ shortUrl: `${process.env.BASE_URL}/${id}` });
 });
 
 app.get('/:id', (req, res) => {
@@ -49,6 +49,8 @@ app.get('/', (req, res) => {
     res.send('Servidor en funcionamiento');
 });
 
-app.listen(3000, () => {
-    console.log('Servidor iniciado en http://localhost:3000');
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`Servidor iniciado en ${process.env.BASE_URL}`);
 });
