@@ -67,95 +67,95 @@ export default {
 
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-/* Declarar fuente y reiniciar estilos */
+/* Restablecer estilos y usar fuente moderna */
 * {
-    font-family: 'Courier Prime', monospace;
-}
-body {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-/* Contenedor central */
+body {
+  background-color: #f8f9fa; /* Fondo más claro para contraste */
+}
+
+/* Contenedor principal */
 .url-shortener {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 26rem;
+  min-height: 100vh; /* Ocupar pantalla completa */
   text-align: center;
-  margin: 4rem;
-  padding: 20px;
-  background: linear-gradient(to bottom right, #004c9c, #1572d6);
-  color: rgb(0, 0, 0);
-  border-radius: 50px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+  background-color: #ffffff; /* Fondo claro para el contenedor principal */
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra más suave */
+  padding: 40px 20px;
+  margin: 20px; /* Asegurarse de que haya espacio alrededor */
 }
 
-/* título */
+/* Título con estilo más moderno */
 .url-shortener h1 {
-  color: #fff;
-  font-size: 2.5em;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  color: #333; /* Color más oscuro para mejor lectura */
+  font-weight: 600; /* Fuente más gruesa */
+  margin-bottom: 24px;
 }
 
-/* formulario */
+/* Estilo del formulario */
 form {
   display: flex;
-  gap: 10px;
-  width: 100%;
-  max-width: 500px;
-  background: white;
-  border-radius: 5px;
-  padding: 10px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  gap: 12px; /* Espacio entre elementos */
+  width: 90%; /* Ancho adaptativo */
+  max-width: 500px; /* Máximo ancho */
+  background-color: #e9ecef; /* Fondo sutil para el formulario */
+  border-radius: 25px; /* Bordes más redondeados */
+  padding: 15px; /* Más espacio interior */
 }
 
 input, button {
-  padding: 10px;
+  padding: 12px; /* Más espacio interior */
   border: none;
-  border-radius: 5px;
-  font-size: 1em;
+  border-radius: 25px; /* Bordes redondeados */
+  font-size: 1rem; /* Tamaño de fuente estándar */
 }
 
-/* inputs */
+/* Estilo de los inputs */
 input {
-  flex-grow: 1;
-  border: 1px solid #ddd;
+  flex-grow: 1; /* Ocupar espacio disponible */
+  background-color: #fff; /* Fondo blanco */
 }
 
-/* botones */
+/* Estilos de los botones */
 button {
-  background-color: #fff;
-  color: #007BFF;
+  background-color: #007bff; /* Color primario más vibrante */
+  color: #fff; /* Texto blanco para contraste */
+  font-weight: 500; /* Fuente semi-negrita */
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s; /* Transición suave */
 }
 
 button:hover {
-  background-color: #ddd;
+  background-color: #0056b3; /* Color más oscuro al pasar el ratón */
 }
 
-/* contenedor del enlace acortado */
+/* Contenedor del enlace acortado */
 .short-url-container {
-  margin-top: 1.5rem;
-  background: white;
-  padding: 5px;
-  border-radius: 15px;
-  width: 100%;
-  max-width: 500px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  margin-top: 20px; /* Más espacio arriba */
+  background-color: #e9ecef; /* Fondo sutil */
+  padding: 15px; /* Más espacio interior */
+  border-radius: 15px; /* Bordes redondeados */
+  width: 90%; /* Ancho adaptativo */
+  max-width: 500px; /* Máximo ancho */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra más suave */
 }
 
-/* enlace acortado */
+/* Estilo del enlace acortado */
 .short-url {
-  color: #007BFF;
-  text-decoration: none;
-  display: inline-block;
-  word-break: break-all;
-  padding-bottom: 20px;
+  color: #007bff; /* Color primario */
+  text-decoration: none; /* Sin subrayado */
+  display: inline-block; /* Alineación correcta */
+  word-break: break-all; /* Ajustar palabras correctamente */
 }
 </style>
